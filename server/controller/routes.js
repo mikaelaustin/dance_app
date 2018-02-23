@@ -40,6 +40,14 @@ router.get('/api/schedule' , (req, res) => {
 	});
 });
 
+router.get('/api/dancers', (req,res) => {
+	models.Dancers.findAll({ order: [
+			['id', 'ASC']
+		]}).then((response) => {
+			res.json(response)
+	});
+})
+
 router.get('*', (req,res) => {
 	res.sendFile(path.join(__dirname, '../../client/public/index.html'));
 });

@@ -4,7 +4,9 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            schedule: undefined
+            schedule: undefined,
+            dancerFilter:undefined,
+            studioFilter: undefined
         };
     }
     componentWillMount(){
@@ -36,9 +38,12 @@ export default class Home extends Component {
     			})
     		}
     	}
+    	//filter by dance studio when radio box is checked
+    	//findall for all rows each time the string of the dancer's name is matched
+    	//findall for all rows each time string of dance studio is called
     	return (
 	    	<div>
-	    		<h1>WHY</h1>
+	    		<input type="radio">See only my studio</input><input type="radio">Filter by favorite dancers</input>
 	    		<table>
 	    			<thead>
 		    			<tr>
@@ -49,7 +54,7 @@ export default class Home extends Component {
 		    			</tr>
 		    		</thead>
 		    		<tbody>
-		    			{appendResults()}
+		    		{appendResults()}
 		    		</tbody>		
 	    		</table>
 	    	</div>

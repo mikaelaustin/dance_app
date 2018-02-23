@@ -42,7 +42,7 @@ export default class Signup extends Component {
               <input type="password" ref="password" placeholder= "Password"/><br></br>
               <button className="btn btn-default" type="submit">Submit</button>
             </form>
-            <p>Don't have an account? <span href="/register">Register</span></p>
+            <p>Don't have an account? <span><a href="/api/register">Register</a></span></p>
           </div>
           {this.state.login}  
         </div>

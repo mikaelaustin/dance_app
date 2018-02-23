@@ -55,6 +55,14 @@ module.exports = function (sequelize, DataTypes) {
 			validate: {
 				msg: "Select a location from the list"
 			}
+		},
+		studio: {
+			type:DataTypes.STRING,
+			allowNull:true
+		},
+		dancers: {
+			type: DataTypes.STRING,
+			allowNull:true
 		}
 	}, {
 		classMethods: {
