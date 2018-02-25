@@ -10,7 +10,7 @@ import Login from "./components/Login"
 export default (
 	<Switch>
     		<Route exact path="/" component={Login} />
-    		<Route path="/api/register" component={Register} />
-    		<Route path="/api/schedule" component={Schedule}/>
+    		<Route path="/register" component={Register} />
+    		<Route path="/schedule" component={Schedule}/>
     </Switch>
 );

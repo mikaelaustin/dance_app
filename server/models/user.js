@@ -10,10 +10,7 @@ module.exports = function (sequelize, DataTypes) {
 		email:{
 			type:DataTypes.STRING,
 			allowNull:false,
-			unique: true,
-			validate:{
-				msg: "Please enter a valid email address"
-			}
+			unique: true
 		},
 		phone:{
 			type:DataTypes.INTEGER,
@@ -21,10 +18,7 @@ module.exports = function (sequelize, DataTypes) {
 		},
 		username: {
 			type: DataTypes.STRING,
-			unique: true,
-			validate:{
-				msg: "Username already taken"
-			}
+			unique: true
 		},
 		salt: {
 			type: DataTypes.STRING
@@ -37,8 +31,10 @@ module.exports = function (sequelize, DataTypes) {
 			type: DataTypes.VIRTUAL,
 			allowNull: false,
 			validate: {
-				len: [7, 100],
-				msg: "Password must be at least 7 characters in length"
+				len: {
+					value: [7, 100],
+					msg: "Password must be at least 7 characters in length"
+				}
 			},
 			set: function (value) { 
 				var salt = bcrypt.genSaltSync(10);
@@ -52,16 +48,13 @@ module.exports = function (sequelize, DataTypes) {
 		location: {
 			type: DataTypes.STRING,
 			allowNull:false,
-			validate: {
-				msg: "Select a location from the list"
-			}
 		},
 		studio: {
-			type:DataTypes.STRING,
+			type: DataTypes.STRING,
 			allowNull:true
 		},
 		dancers: {
-			type: DataTypes.STRING,
+			type: DataTypes.ARRAY(DataTypes.TEXT),
 			allowNull:true
 		}
 	}, {

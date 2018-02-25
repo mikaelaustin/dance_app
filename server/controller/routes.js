@@ -26,11 +26,41 @@ router.post('/api/register' , (req, res) => {
 	});
 });
 
-router.post('/api/login', (req,res) => {
-	models.User.findOne({where: {username: req.body.username}}).then((user) => {
-		res.json(bcrypt.compareSync(req.body.password, user.password_hash));
+// router.post('/', (req,res) => {
+// 	models.User.findOne({where: {username: req.body.username}}).then((user) => {
+// 		res.json(bcrypt.compareSync(req.body.password, user.password_hash));
+// 	});
+// });
+module.exports = (app, passport) => {
+app.get('/api/login', function(req,res){
+		if(req.user){
+			res.json({message: 'signed-in', user_id: req.user.id});
+		}
 	});
+app.post('/api/login', function(req,res,next){
+	passport.authenticate('local-signin', function(err, user, info){
+		   if (err) {
+		     return next(err);
+		   }
+		   if (!user) {
+		    return res.json({ success : false, message : 'authentication failed', info: info });
+		   }
+		   req.login(user, function(err){
+			if(err){
+				return next(err);
+			}
+		      return res.status(200).json({ success : true, message : 'authentication succeeded', object : user });        
+		});
+	  })(req, res, next);
 });
+
+app.get('/api/logged-in', (req,res) => {
+	if(req.user){
+		res.json({message: 'logged-in', user: req.user});
+	} else {
+		res.json({message: 'no req.user'})
+	}
+})
 
 router.get('/api/schedule' , (req, res) => {
 	models.Masterlist.findAll({ order: [
@@ -51,5 +81,6 @@ router.get('/api/dancers', (req,res) => {
 router.get('*', (req,res) => {
 	res.sendFile(path.join(__dirname, '../../client/public/index.html'));
 });
+}
 
 module.exports = router;

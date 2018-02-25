@@ -1,0 +1,72 @@
+#login-header{
+	font:black !important;
+	outline: white !important;
+	border-color: white !important;
+	text-shadow: white;
+	font-size: : 22px !important;
+	margin-bottom:20px;
+	padding-bottom: 10px;
+
+}
+#form-div{
+	margin:auto;
+}
+h2{
+	padding:10px;
+	-webkit-text-stroke: .5px white;
+	font:black;
+	font-size: 35px;
+}
+#login-user{
+	margin:10px;
+	border-color: black;
+}
+#login-pword{
+	margin:10px;
+	border-color: black;
+}
+#login-button{
+	margin:5px;
+	border-color: black;
+	font: black;
+	margin-bottom:10px;
+}
+body{
+	background-color: #ff4dd2;
+}
+a{
+	color:white;
+	text-shadow: black;
+}
+#select-font{
+	font-size:18px;
+	color:black;
+	margin-top:3px;
+	margin-bottom:-15px;
+}
+
+
+.btn{
+	border-color: black;
+	color:black;
+}
+
+.form-control{
+	align-items: center;
+	border-color: black;
+}
+form{
+	width:50%;
+	align-items: center;
+}
+#account{
+	font-size: 16px !important;
+}
+select{
+	width:50%;
+	margin-bottom:10px;
+	
+}
+
+
+

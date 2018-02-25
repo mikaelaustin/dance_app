@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
+import { withRouter } from 'react-router-dom';
 import Autocomplete from 'react-autocomplete';
 
-export default class Signup extends Component {
+class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            signedUp: undefined,
-            dancer:undefined,
-            studio:undefined,
             locationDropdownValue: 'Choose Location',
             dancerDropdownValue: 'Choose Dancer',
             dancers: [],
@@ -30,12 +27,11 @@ export default class Signup extends Component {
    			phone: this.refs.phone.value,
    			username: this.refs.username.value,
    			password: this.refs.password.value,
-   			location: this.refs.locationDropdownValue.value,
-   			studio: this.refs.studioDropdownValue.value,
-   			dancers: this.refs.dancerDropdownValue.value
+   			location: this.state.locationDropdownValue,
+   			studio: this.state.studioDropdownValue,
+   			dancers: this.state.allSelected
    		}
-
-   		fetch('/api/signup', {
+   		fetch('/api/register', {
    			method: 'post',
    			body: JSON.stringify(inputData),
    			 headers: {
@@ -43,11 +39,14 @@ export default class Signup extends Component {
                 'accept': 'application/json'
             } 
    		}).then((response) => response.json()).then((results) => {
-   			console.log(results)
-   			let signUpSuccess = results ? "Yes" : "No"
-   			this.setState({
-   				signedUp: signUpSuccess
-   			})
+   			// console.log(results)
+   			// let signUpSuccess = results ? "Yes" : "No"
+   			// this.setState({
+   			// 	signedUp: signUpSuccess
+   			// })
+   			if(results){
+   				this.props.history.push('/');
+   			}
    		})
    }
    handleLocationDropdownChange(e){
@@ -118,16 +117,18 @@ export default class Signup extends Component {
     	// 	})
     	// }
     	return (
-    	<div className = "text-center">
-    		<div>
+    	<div className = "text-center center-block">
+    		<div id="form-div" className="text-center center-block">
     			<h2>Register</h2>
 	    		<form onSubmit={this.submitSignUpForm.bind(this)}>
-	    			<input type="text" ref="name" placeholder= "Enter first & last name"/><br></br>
-	    			<input type="text" ref="email" placeholder= "Email"/><br></br>
-	    			<input type="text" ref="phone" placeholder= "Phone #"/><br></br>
-	    			<input type="text" ref="username" placeholder= "Create Username"/><br></br>
-	    			<input type="password" ref="password" placeholder= "Create Password"/><br></br>
-	    			<select value={this.state.locationDropdownValue} onChange={this.handleLocationDropdownChange.bind(this)}>
+	    			<input className="form-control" type="name" ref="name" placeholder= "Enter first & last name"/><br></br>
+	    			<input className="form-control" type="email" ref="email" placeholder= "Email"/><br></br>
+	    			<input className="form-control" type="phone" ref="phone" placeholder= "Phone #"/><br></br>
+	    			<input className="form-control" type="text" ref="username" placeholder= "Create Username"/><br></br>
+	    			<input className="form-control" type="password" ref="password" placeholder= "Create Password"/><br></br>
+	    			<p id="select-font">Location of competition</p>
+	    			<br></br>
+	    			<select id="location-dropdown" value={this.state.locationDropdownValue} onChange={this.handleLocationDropdownChange.bind(this)}>
 	    				<option value="Choose Location" disabled>Choose Location</option>
 	    				<option value="Denver CO">Denver CO</option>
 	    				<option value="Las Vegas NV">Las Vegas NV</option>
@@ -142,9 +143,9 @@ export default class Signup extends Component {
 	    			</select>
 	    			<br></br>
 	    			
-	    			<p>What studio are you with?</p>
+	    			<p id="select-font">What studio are you with?</p>
 	    			<br></br>
-	    			<select value={this.state.studioDropdownValue} onChange={this.handleStudioDropdownChange.bind(this)}>
+	    			<select id="studio-dropdown" value={this.state.studioDropdownValue} onChange={this.handleStudioDropdownChange.bind(this)}>
 	    				<option value="Select Studio" disabled>Choose your studio</option>
 	    				<option value="Art In Motion">Art In Motion</option>
 	    				<option value="Broadway Dancers">Broadway Dancers</option>
@@ -170,21 +171,23 @@ export default class Signup extends Component {
 	    				{appendDancers()}
 	    			</select>
 	    			*/}
-	    		<p>Select dancers to add to your favorites (optional)</p>
+	    		<p id="select-font">Select dancers to add to your favorites (optional)</p>
 	    		<br></br>	
 	    		<Autocomplete
 	    			getItemValue={(item) => item.dancer}
-                    items={dancerArray}
+                    items={dancerArray} 
+                    placeholder="Begin typing name(s)"
                     renderItem={(item, isHighlighted) => 
                         this.state.value ? 
-                            <div>
+                            <div  id="dancer-input" className="form-control">
                                <input 
-                               		placeholder="Begin typing name(s)"
+                               		//id="dancer-input" className="form-control"
+                               		//placeholder="Begin typing name(s)"
                                 	type="checkbox" 
                                 	onChange={() => this.allSelectedChange(item.dancer)}
                                 	checked={this.state.allSelected.indexOf(item.dancer) > -1}
                                 />
-                               {item.dancer}
+                             {item.dancer}
                             </div> : <div></div>
                     }
                     shouldItemRender={(item, value) => item.dancer.toLowerCase().indexOf(value) > -1}
@@ -203,13 +206,13 @@ export default class Signup extends Component {
                             filteredArr.map((arr, index) => {
                                 return (
                                     <div>
-                                        <p key={index}>{arr.dancer}</p>
+                                       <p key={index}>{arr.dancer}</p>
                                     </div>
                                 )
                             }) : <p></p> 
                     }
                 </div> 
-	    			<input className="btn btn-default" type="submit" value="Register" href="/login"/>
+	    			<input className="btn btn-default" type="submit" value="Register"/>
 	    		</form>
 	    	</div>
 	    	{this.state.signedUp}	
@@ -218,3 +221,4 @@ export default class Signup extends Component {
     }
 }
 
+export default withRouter(Signup)

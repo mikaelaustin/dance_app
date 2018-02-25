@@ -43,7 +43,8 @@ export default class Home extends Component {
     	//findall for all rows each time string of dance studio is called
     	return (
 	    	<div>
-	    		<input type="radio">See only my studio</input><input type="radio">Filter by favorite dancers</input>
+	    		<input type="checkbox"/>See only my studio
+	    		<input type="radio"/>Filter by favorite dancers
 	    		<table>
 	    			<thead>
 		    			<tr>
