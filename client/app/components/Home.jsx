@@ -6,21 +6,66 @@ export default class Home extends Component {
         this.state = {
             schedule: undefined,
             dancerFilter:undefined,
-            studioFilter: undefined
+            studioFilter: undefined,
+            studioChecked: false,
+            user: undefined
         };
     }
+    filterUserStudio(studio){
+    	const filteredStudio = this.state.schedule.filter((s) => s.studio === this.state.user.studio);
+    	this.setState({
+    		schedule: filteredStudio,
+    		studioChecked: true
+    	})
+    }
+
+    //  filterUserStudio(studio){
+    //  	if(this.state.studioChecked)
+    // 	const filteredStudio = this.state.schedule.filter((s) => s.studio === this.state.user.studio);
+    // 	this.setState({
+    // 		schedule: filteredStudio,
+    // 		studioChecked: true
+    // 	})
+    // }
+
+    // filterUserDancers(dancers){
+    // 	const filteredDancers = this.state.schedule.filter((d) => d.dancers === this.state.user.dancers);
+    // 	this.setState({
+    // 		schedule:filteredDancers
+    // 	})
+    // }
+
     componentWillMount(){
     	fetch('/api/schedule', {
     		headers: {
                 'content-type': 'application/json',
                 'accept': 'application/json'
             },
+            credentials: 'same-origin'
     	}).then((response) => response.json()).then((results) => {
     		console.log(results)
     		this.setState({
     			schedule: results
     		});
     	});
+
+    	fetch('/api/logged-in', {
+    		headers: {
+                'content-type': 'application/json',
+                'accept': 'application/json'
+            },
+            credentials: 'same-origin' 
+    	}).then((response) => response.json()).then((results) => {
+    		console.log(results)
+            if(results.message){
+                if(results.message === "logged-in"){
+                    this.setState({
+                    	user: results.user
+                    })
+                }
+            }
+    	});
+
     }
     render(){
     	console.log(this.state)
@@ -42,19 +87,31 @@ export default class Home extends Component {
     	//findall for all rows each time the string of the dancer's name is matched
     	//findall for all rows each time string of dance studio is called
     	return (
-	    	<div>
-	    		<input type="checkbox"/>See only my studio
-	    		<input type="radio"/>Filter by favorite dancers
-	    		<table>
-	    			<thead>
+	    	<div id="schedule-page">
+	    		<div id="studio-check">
+		    		<input 
+		    			id="check"
+		    			type="checkbox"
+		    			onChange={() => this.filterUserStudio(this.state.user.studio)}
+		    		/>See only my studio   
+		    	</div>	
+		    	<div id="dancer-check">
+		    		<input 
+		    			id="check"
+		    			type="checkbox"
+		    			onChange={() => this.filterUserDancers(this.state.user.dancers)} 
+		    		/>Filter by favorite dancers    
+		    	</div>
+	    		<table id="table-schedule"className = "table table-bordered">
+	    			<thead id="table-head" className="thead">
 		    			<tr>
-		    				<th>#</th>
-		    				<th>Song</th>
-		    				<th>Studio</th>
-		    				<th>Dancers</th>
+		    				<th id="num">#</th>
+		    				<th id="song">Song</th>
+		    				<th id="stud">Studio</th>
+		    				<th id="danc">Dancers</th>
 		    			</tr>
 		    		</thead>
-		    		<tbody>
+		    		<tbody className=" table-striped table-hover">
 		    		{appendResults()}
 		    		</tbody>		
 	    		</table>

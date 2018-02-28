@@ -56,16 +56,75 @@ a{
 	border-color: black;
 }
 form{
-	width:50%;
+	width:40%;
 	align-items: center;
 }
 #account{
 	font-size: 16px !important;
 }
 select{
-	width:50%;
+	width:40%;
 	margin-bottom:10px;
 	
+}
+table{
+	width:75% !important;
+	position:center;
+	text-align:center;
+	margin:auto;
+	font:black;
+}
+tbody{
+	font:black;
+}
+tbody tr td{
+	height:20px;
+}
+thead tr{
+	height:50px;
+	background-color: #ff4dd2;
+}
+tbody tr:nth-child(2n+1) td{
+	background-color:#ff80df;
+}	
+tbody tr:nth-child(2n) td{
+	background-color: #ff4dd2;
+}
+
+#table-head{
+	text-align:center;
+}
+#song{
+	text-align:center;
+	width:100px;
+}
+#stud{
+	text-align:center;
+	width:125px;
+}
+#num{
+	text-align:center;
+	width:70px;
+}
+#danc{
+	text-align:center;
+	width:150px;
+}
+#schedule-page{
+	background-color:#1a0011 !important;
+}
+#dancer-check, #studio-check{
+	color:white !important;
+	font-size: 20px;
+	margin-top: 20px;
+	padding:25px;
+	float:right;
+
+}
+input[type=checkbox]{
+	padding-right:5px;
+	width:25px;
+	height:15px;
 }
 
 

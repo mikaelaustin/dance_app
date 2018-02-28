@@ -118,7 +118,7 @@ class Signup extends Component {
     	// }
     	return (
     	<div className = "text-center center-block">
-    		<div id="form-div" className="text-center center-block">
+    		<div id="form-div" className="offset-md-3">
     			<h2>Register</h2>
 	    		<form onSubmit={this.submitSignUpForm.bind(this)}>
 	    			<input className="form-control" type="name" ref="name" placeholder= "Enter first & last name"/><br></br>

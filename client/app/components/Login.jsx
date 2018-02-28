@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router'
+import { withRouter } from 'react-router-dom';
 
-export default class Signup extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,14 +23,16 @@ export default class Signup extends Component {
    			 headers: {
                 'content-type': 'application/json',
                 'accept': 'application/json'
-            } 
+            }, 
          credentials: 'same-origin'   
    		}).then((response) => response.json()).then((results) => {
    			console.log(results)
+        console.log("hello")
         if(results.status==401){
           alert("Incorrect username or password")
         } else {
-          browserHistory.push("/schedule")
+          this.props.history.push("/schedule")
+          console.log(results)
         }
    		})
    }
@@ -44,7 +46,7 @@ componentWillMount(){
     }).then((response) => response.json())
     .then((results) => {
         if(results.message === "logged-in"){
-            browserHistory.push("/home")
+            this.props.history.push("/schedule")
         }
     });
   }
@@ -55,14 +57,16 @@ componentWillMount(){
           <div>
             <h2 id="login-header">Login</h2>
             <form onSubmit={this.loginForm.bind(this)}>
-              <input className="form-control" id="login-user" type="text" ref="username" placeholder= "Username"/><br></br>
-              <input className="form-control " id="login-pword" type="password" ref="password" placeholder= "Password"/><br></br>
-              <button id="login-button" className="btn btn-default" type="submit" onSubmit={this.redirectToSchedule.bind(this)}>Submit</button>
+              <input className="offset-md-4 form-control" id="login-user" type="text" ref="username" placeholder= "Username"/><br></br>
+              <input className="offset-md-4 form-control " id="login-pword" type="password" ref="password" placeholder= "Password"/><br></br>
+              <button id="login-button" className="btn btn-default" type="submit" >Submit</button>
             </form>
-            <p id="account">Don't have an account? <a id="register" href="/register">Register</a></p>
+            <p id="account">Don't have an account? <a id="register"href="/register">Register</a></p>
           </div>
           {this.state.login}  
         </div>
         )
     }
  }  
+
+export default withRouter(Login)
