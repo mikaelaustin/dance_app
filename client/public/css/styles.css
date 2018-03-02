@@ -118,7 +118,7 @@ tbody tr:nth-child(2n) td{
 	font-size: 20px;
 	margin-top: 20px;
 	padding:25px;
-	float:right;
+	float:left;
 
 }
 input[type=checkbox]{
@@ -126,6 +126,20 @@ input[type=checkbox]{
 	width:25px;
 	height:15px;
 }
+#exit-button{
+	margin-left:600px;
+	background-color:#ff4dd2;
+	font:black;
+}
+nav{
+	background-color:#ff4dd2;
+	border-color: black;
 
+}
+#nycda{
+	color:white;
+	outline:black !important;
+	padding:20px;
+}
 
 

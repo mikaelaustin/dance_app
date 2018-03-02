@@ -100,6 +100,11 @@ router.get('/api/dancers', (req,res) => {
 			res.json(response)
 	});
 })
+router.delete('/api/logout', function (req, res) {
+		req.session.destroy(function(){
+			res.status(204).send();
+		});
+	});
 
 router.get('*', (req,res) => {
 	res.sendFile(path.join(__dirname, '../../client/public/index.html'));

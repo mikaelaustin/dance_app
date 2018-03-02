@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class Home extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -8,32 +9,66 @@ export default class Home extends Component {
             dancerFilter:undefined,
             studioFilter: undefined,
             studioChecked: false,
-            user: undefined
+            dancerChecked: false,
+            user: undefined,
+            allDancers: [],
         };
     }
     filterUserStudio(studio){
-    	const filteredStudio = this.state.schedule.filter((s) => s.studio === this.state.user.studio);
-    	this.setState({
-    		schedule: filteredStudio,
-    		studioChecked: true
-    	})
+    	if(!this.state.studioChecked){
+	    	const filteredStudio = this.state.schedule.filter((s) => s.studio === this.state.user.studio);
+	    	this.setState({
+	    		schedule: filteredStudio,
+	    		studioChecked: true
+	    	})
+	    } else {
+	    	this.setState({
+	    		schedule: this.state.allDancers,
+	    		studioChecked:false
+	    	})
+	    }
+    }
+      logoutUser(){
+        fetch('/api/logout', {
+            method: 'DELETE',
+            credentials: 'same-origin'
+        }).then((response) => {
+        	if(response.status == 204){
+        		this.props.history.push('/');
+        	}
+        });
     }
 
-    //  filterUserStudio(studio){
-    //  	if(this.state.studioChecked)
-    // 	const filteredStudio = this.state.schedule.filter((s) => s.studio === this.state.user.studio);
-    // 	this.setState({
-    // 		schedule: filteredStudio,
-    // 		studioChecked: true
-    // 	})
-    // }
+   filterUserDancers(dancers){
+   		if(!this.state.dancerChecked){
+   			var matchDancers = []
+	   		for(var j=0; j < this.state.user.dancers.length; j++){
+	   			for (var i=0; i < this.state.schedule.length; i++){
+		   			if(this.state.schedule[i].dancers.indexOf(this.state.user.dancers[j]) > -1){
+		   				matchDancers.push(this.state.schedule[i])
+		   				this.setState({
+		   					dancerChecked: true
+		   				})
+		   			}
+	   			}
+	   		}
+	   		console.log(matchDancers)
+	   		this.setState({
+	   			schedule: matchDancers
+	   		})
+   		} else {
+   			this.setState({
+   				dancerChecked: false,
+   				schedule: this.state.allDancers
+   			})
+   		}
 
-    // filterUserDancers(dancers){
-    // 	const filteredDancers = this.state.schedule.filter((d) => d.dancers === this.state.user.dancers);
-    // 	this.setState({
-    // 		schedule:filteredDancers
-    // 	})
-    // }
+   	//for loop 
+   	//if schedule.dancer[i]===user.dancer[j]
+   } 
+//use two for loops
+//one loops through schedule.dancers, and one through user.dancers
+// 
 
     componentWillMount(){
     	fetch('/api/schedule', {
@@ -45,7 +80,8 @@ export default class Home extends Component {
     	}).then((response) => response.json()).then((results) => {
     		console.log(results)
     		this.setState({
-    			schedule: results
+    			schedule: results,
+    			allDancers: results
     		});
     	});
 
@@ -88,6 +124,9 @@ export default class Home extends Component {
     	//findall for all rows each time string of dance studio is called
     	return (
 	    	<div id="schedule-page">
+	    		<nav className="navbar">
+					<h1 id="nycda"className="text-center">NYCDA</h1>
+				</nav>
 	    		<div id="studio-check">
 		    		<input 
 		    			id="check"
@@ -99,7 +138,7 @@ export default class Home extends Component {
 		    		<input 
 		    			id="check"
 		    			type="checkbox"
-		    			onChange={() => this.filterUserDancers(this.state.user.dancers)} 
+		    			onChange={() => this.filterUserDancers(this.state.schedule)} 
 		    		/>Filter by favorite dancers    
 		    	</div>
 	    		<table id="table-schedule"className = "table table-bordered">
@@ -115,7 +154,9 @@ export default class Home extends Component {
 		    		{appendResults()}
 		    		</tbody>		
 	    		</table>
+	    		<button className="btn btn-default text-center" id="exit-button" onClick={this.logoutUser.bind(this)}>Sign Out</button>
 	    	</div>
     	)
     }
 }
+export default withRouter(Home)
