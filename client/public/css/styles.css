@@ -11,25 +11,40 @@
 #form-div{
 	margin:auto;
 }
+#register-form{
+	margin-left:400px;
+}
 h2{
 	padding:10px;
 	-webkit-text-stroke: .5px white;
 	font:black;
 	font-size: 35px;
+	margin-left: 190px;
+	z-index: 1;
+	position: relative;
 }
 #login-user{
 	margin:10px;
 	border-color: black;
+	margin-left:75px;
 }
 #login-pword{
 	margin:10px;
 	border-color: black;
+	margin-left:75px;
 }
 #login-button{
 	margin:5px;
 	border-color: black;
 	font: black;
 	margin-bottom:10px;
+	margin-left:210px;
+}
+#reg-name, #reg-email, #reg-phone, #reg-un, #reg-pword{
+	margin-left:100px;
+}
+#register-head{
+	margin-left:0px;
 }
 body{
 	background-color: #ff4dd2;
@@ -54,13 +69,19 @@ a{
 .form-control{
 	align-items: center;
 	border-color: black;
+	width:70% !important;
 }
 form{
 	width:40%;
 	align-items: center;
+	z-index: 1;
+	position: relative;
 }
 #account{
 	font-size: 16px !important;
+	margin-left:125px;
+	z-index: 1;
+	position: relative;
 }
 select{
 	width:40%;
@@ -126,20 +147,224 @@ input[type=checkbox]{
 	width:25px;
 	height:15px;
 }
+input[type=checkbox]:checked{
+	background-color:#ff4dd2;
+	color:#ff4dd2;
+}
 #exit-button{
 	margin-left:600px;
 	background-color:#ff4dd2;
 	font:black;
+	border-color: white;
+	margin-bottom:30px;
+	margin-top:30px;
 }
 nav{
-	background-color:#ff4dd2;
+	background-color:white;
 	border-color: black;
+	stroke:black;
+	height:150px;
 
 }
 #nycda{
-	color:white;
-	outline:black !important;
-	padding:20px;
+	height:180px;
+	width:550px;
+	padding-bottom:30px;
+	margin-left:560px;
+	text-align:center;
+}
+.crossfade > figure {
+	animation: imageAnimation 50s linear infinite 0s;
+	backface-visibility:hidden;
+	background-size:cover;
+	background-position: center center;
+	color:transparent;
+	height:100%;
+	left:0px;
+	opacity:0px;
+	position:absolute;
+	top:150px;
+	width:100%;
+	z-index:0;
+}
+.crossfade > figure:nth-child(1) {
+	animation-delay: 0s;
+	background-image: url("./../images/dancer7.jpg");
+}
+.crossfade > figure:nth-child(2) {
+	animation-delay: 5s;
+	background-image: url("./../images/group1.jpg");
+}
+.crossfade > figure:nth-child(3) {
+	animation-delay: 10s;
+	background-image: url("./../images/dancer6.jpg");
+}
+.crossfade > figure:nth-child(4) {
+	animation-delay: 15s;
+	background-image: url("./../images/dancer3.jpg");
+}
+.crossfade > figure:nth-child(5) {
+	animation-delay: 20s;
+	background-image: url("./../images/group2.jpg");
+}
+.crossfade > figure:nth-child(6) {
+	animation-delay: 25s;
+	background-image: url("./../images/dancer4.jpg");
+}
+.crossfade > figure:nth-child(7) {
+	animation-delay: 30s;
+	background-image: url("./../images/group3.jpg");
+}
+.crossfade > figure:nth-child(8) {
+	animation-delay: 35s;
+	background-image: url("./../images/dancer5.jpg");
+}
+.crossfade > figure:nth-child(9) {
+	animation-delay: 40s;
+	background-image: url("./../images/group4.jpg");
+}
+.crossfade > figure:nth-child(10) {
+	animation-delay: 45s;
+	background-image: url("./../images/group5.jpg");
+}
+@keyframes 
+imageAnimation { 
+    0% { opacity: 0; animation-timing-function: ease-in; }
+    8% { opacity: .8; animation-timing-function: ease-out; }
+    17% { opacity: .8 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-webkit-keyframes 
+imageAnimation { 
+    0% { opacity: 0; animation-timing-function: ease-in; }
+    8% { opacity: .8; animation-timing-function: ease-out; }
+    17% { opacity: .8 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
 }
 
 
+
+/*.fadein img {
+   position: absolute;
+   z-index: 0;
+   -webkit-animation-name: fade;
+   -webkit-animation-iteration-count: infinite;
+   -webkit-animation-duration: 50s;
+   animation-name: fade;
+   animation-duration: 50s;
+   top:150px;
+   left:0px;
+   position: absolute;
+   height:100%;
+   width:100%;
+}
+
+@-webkit-keyframes fade {
+   0% {opacity: 0;}
+   20% {opacity: .9;}
+   33% {opacity: .8;}
+   53% {opacity: 0;}
+   100% {opacity: 0;}
+}
+
+@keyframes fade {
+   0% {opacity: 0;}
+   20% {opacity: .8;}
+   33% {opacity: .8;}
+   53% {opacity: 0;}
+   100% {opacity: 0;}
+}
+#pic1 {
+   height: auto;
+   width: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+
+}
+#pic2 {
+   -webkit-animation-delay: -5s;
+   height: auto;
+   width: 100%;
+   background-position: 100px 100px;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+}
+
+#pic3 {
+   -webkit-animation-delay: -10s;
+   height: auto;
+   width: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+}
+#pic4 {
+   -webkit-animation-delay: -15s;
+   height: auto;
+   width: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+}
+#pic5 {
+   -webkit-animation-delay: -20s;
+   height: auto;
+   width: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+}
+#pic6 {
+   -webkit-animation-delay: -25s;
+   height: auto;
+   width: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+}
+#pic7 {
+   -webkit-animation-delay: -30s;
+   height: auto;
+   width: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+}
+#pic8 {
+   -webkit-animation-delay: -35s;
+   height: auto;
+   width: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+}
+#pic9 {
+   -webkit-animation-delay: -40s;
+   height: auto;
+   width: 100%;
+   background-position: 100px 100px;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+}
+#pic10 {
+   -webkit-animation-delay: -45s;
+   height: auto;
+   width: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin: 0%;
+}
+*/

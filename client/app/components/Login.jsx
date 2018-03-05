@@ -28,7 +28,7 @@ class Login extends Component {
    		}).then((response) => response.json()).then((results) => {
    			console.log(results)
         console.log("hello")
-        if(results.status==401){
+        if(!results.success){
           alert("Incorrect username or password")
         } else {
           this.props.history.push("/schedule")
@@ -53,15 +53,48 @@ componentWillMount(){
 
    render(){
       return (
-        <div className="text-center">
+        <div >
           <div>
-            <h2 id="login-header">Login</h2>
-            <form onSubmit={this.loginForm.bind(this)}>
-              <input className="offset-md-4 form-control" id="login-user" type="text" ref="username" placeholder= "Username"/><br></br>
-              <input className="offset-md-4 form-control " id="login-pword" type="password" ref="password" placeholder= "Password"/><br></br>
-              <button id="login-button" className="btn btn-default" type="submit" >Submit</button>
-            </form>
-            <p id="account">Don't have an account? <a id="register"href="/register">Register</a></p>
+            <nav className="navbar">
+              <img id="nycda"src={'./images/nycda_logo.png'}className="img-responsive"/>
+            </nav>
+              <h2 id="login-header">Login</h2>
+              <form onSubmit={this.loginForm.bind(this)}>
+                <input className="offset-md-4 form-control" id="login-user" type="text" ref="username" placeholder= "Username"/><br></br>
+                <input className="offset-md-4 form-control " id="login-pword" type="password" ref="password" placeholder= "Password"/><br></br>
+                <button id="login-button" className="btn btn-default" type="submit" >Submit</button>
+              </form>
+              <p id="account">Don't have an account? <a id="register"href="/register">Register</a></p>
+            
+            <div className="crossfade">
+                <figure></figure>
+                <figure></figure>
+                <figure></figure>
+                <figure></figure>
+                <figure></figure>
+                <figure></figure>
+                <figure></figure>
+                <figure></figure>
+                <figure></figure>
+                <figure></figure>
+             </div> 
+             {/*
+                <div className="fadein">
+                <img id="pic1" src={'./images/group5.jpg'}/>
+                <img id="pic2" src={'./images/dancer7.jpg'}/>
+                <img id="pic3" src={'./images/group1.jpg'}/>
+                <img id="pic4" src={'./images/dancer6.jpg'}/>
+                <img id="pic5" src={'./images/dancer2.jpg'}/>
+                <img id="pic6" src={'./images/group2.jpg'}/>
+                <img id="pic7" src={'./images/dancer4.jpg'}/>
+                <img id="pic8" src={'./images/group3.jpg'}/>
+                <img id="pic9" src={'./images/dancer5.jpg'}/>
+                <img id="pic10" src={'./images/group4.jpg'}/>
+             
+             </div>
+               */}
+
+             
           </div>
           {this.state.login}  
         </div>

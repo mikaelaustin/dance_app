@@ -125,7 +125,7 @@ class Home extends Component {
     	return (
 	    	<div id="schedule-page">
 	    		<nav className="navbar">
-					<h1 id="nycda"className="text-center">NYCDA</h1>
+					<img id="nycda"src={'./images/nycda_logo.png'}className="img-responsive"/>
 				</nav>
 	    		<div id="studio-check">
 		    		<input 
