@@ -84,7 +84,7 @@ router.get('/api/logged-in', (req,res) => {
 		res.json({message: 'no req.user'})
 	}
 })
-
+//route to show schedule
 router.get('/api/schedule' , (req, res) => {
 	models.Masterlist.findAll({ order: [
 			['id', 'ASC']
@@ -92,7 +92,7 @@ router.get('/api/schedule' , (req, res) => {
 			res.json(response)
 	});
 });
-
+//route for the checkbox of fav dancers on homepage
 router.get('/api/dancers', (req,res) => {
 	models.Dancers.findAll({ order: [
 			['id', 'ASC']
@@ -100,6 +100,22 @@ router.get('/api/dancers', (req,res) => {
 			res.json(response)
 	});
 })
+//route to update favorite dancers on the homepage
+router.put('/api/update-dancer-favorites', (req,res) => {
+	models.User.update(
+		{
+			dancers: req.body.dancers
+		},
+		{
+			where: {
+				id: req.user.id
+			}
+		}
+	).then((post) => {
+		res.json(post)
+	});
+});
+
 router.delete('/api/logout', function (req, res) {
 		req.session.destroy(function(){
 			res.status(204).send();

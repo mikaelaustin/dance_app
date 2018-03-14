@@ -76,6 +76,10 @@ class Signup extends Component {
             value: e
         })
     }
+    componentDidMount(){
+    	//document.getElementsByClassName('my_ra')[0].setAttribute('id', 'signup_ra')
+    	$('input[role="combobox"]').attr('id', 'signup_ra');
+    }
    componentWillMount(){
    	fetch('/api/dancers', {
 			headers: {
@@ -95,7 +99,7 @@ class Signup extends Component {
     render(){
     	// console.log(this.state)
     	const {dancers, selectDancer, value} = this.state;
-    	console.log(this.state)
+    	console.log(this.props.menuStyle)
         let dancerArray = [];
         let filteredArr;
 
@@ -121,8 +125,8 @@ class Signup extends Component {
     		<nav className="navbar">
 				<img id="nycda"src={'./images/nycda_logo.png'}className="img-responsive"/>
 			</nav>
-    		<div id="form-div" className="offset-md-3">
-    			<h2 id="register-head">Register</h2>
+    		<div id="form-div" >
+    			<h2 id="register-head" className="text-center">Register</h2>
 	    		<form id="register-form" onSubmit={this.submitSignUpForm.bind(this)}>
 		    			<input id="reg-name"className="form-control" type="name" ref="name" placeholder= "Enter first & last name"/><br></br>
 		    			<input id="reg-email"className="form-control" type="email" ref="email" placeholder= "Email"/><br></br>
@@ -179,11 +183,18 @@ class Signup extends Component {
 		    		<Autocomplete
 		    			getItemValue={(item) => item.dancer}
 	                    items={dancerArray} 
-	                    id="dancer-input"
-	                    placeholder="Begin typing name(s)"
+	                    menuStyle={
+	                    	{
+	                    		width: '275px',
+	                    		left:'192px',
+	                    		top:'390px',
+	                    		position:'absolute'
+	                    		
+	                    	}
+	                    }
 	                    renderItem={(item, isHighlighted) => 
 	                        this.state.value ? 
-	                            <div className="form-control">
+	                            <div className="form-control" >
 	                               <input 
 	                                	type="checkbox" 
 	                                	onChange={() => this.allSelectedChange(item.dancer)}
@@ -202,19 +213,7 @@ class Signup extends Component {
 	                    onSelect={this.selectDancerChange.bind(this)}
 	                />
 	                <br></br>
-	                <div>
-	                    {
-	                        filteredArr && filteredArr.length > 0 ?
-	                            filteredArr.map((arr, index) => {
-	                                return (
-	                                    <div>
-	                                       <p key={index}>{arr.dancer}</p>
-	                                    </div>
-	                                )
-	                            }) : <p></p> 
-	                    }
-	                </div> 
-		    			<input className="btn btn-default" type="submit" value="Register"/>
+		    		<input id="reg-button" className="btn btn-default btn-glow" type="submit" value="Register"/>
 	    		</form>
 	    	</div>
 	    	{this.state.signedUp}	

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import Autocomplete from 'react-autocomplete';
 
 class Home extends Component {
     constructor(props) {
@@ -12,8 +13,39 @@ class Home extends Component {
             dancerChecked: false,
             user: undefined,
             allDancers: [],
+            dancers: [],
+            allSelected: [],
+            value:'',
+            selectDancer: undefined,
         };
     }
+    updateDancersForm(e){
+   		e.preventDefault();
+
+   		var dancers = this.state.user.dancers.concat(this.state.allSelected);
+
+//the below should be updating dancer array in users
+//put route
+   		fetch('/api/update-dancer-favorites', {
+   			method: 'put',
+   			body: JSON.stringify({dancers: dancers}),
+   			 headers: {
+                'content-type': 'application/json',
+                'accept': 'application/json'
+            },
+            credentials: 'same-origin'
+   		}).then((response) => response.json()).then((results) => {
+   			console.log(results)
+   			// let signUpSuccess = results ? "Yes" : "No"
+   			// this.setState({
+   			// 	signedUp: signUpSuccess
+   			// })
+   			if(results){
+   				console.log(results)
+   			}
+   		})
+   	}
+  
     filterUserStudio(studio){
     	if(!this.state.studioChecked){
 	    	const filteredStudio = this.state.schedule.filter((s) => s.studio === this.state.user.studio);
@@ -62,14 +94,23 @@ class Home extends Component {
    				schedule: this.state.allDancers
    			})
    		}
-
-   	//for loop 
-   	//if schedule.dancer[i]===user.dancer[j]
    } 
-//use two for loops
-//one loops through schedule.dancers, and one through user.dancers
-// 
-
+    allSelectedChange(e){
+   		console.log(e)
+        this.setState({
+            allSelected: this.state.allSelected.concat(e)
+        })
+    }
+    selectDancerChange(e){
+        this.setState({
+            selectDancer: e,
+            value: e
+        })
+    }
+    componentDidMount(){
+    	$('input[role="combobox"]').attr('id', 'home_ra');
+    	//document.getElementsByClassName('my_ra')[0].setAttribute('id', 'home_ra')
+    }
     componentWillMount(){
     	fetch('/api/schedule', {
     		headers: {
@@ -102,8 +143,36 @@ class Home extends Component {
             }
     	});
 
-    }
+    	fetch('/api/dancers', {
+			headers: {
+                'content-type': 'application/json',
+                'accept': 'application/json'
+            }
+		}).then((response) => response.json())
+        .then((results) => {
+            this.setState({
+            	dancers: results
+            })
+        });
+   	};
+
     render(){
+    	const {dancers, selectDancer, value} = this.state;
+    	console.log(this.state)
+        let dancerArray = [];
+        let filteredArr;
+
+         if(dancers.length > 0){
+            if(selectDancer){
+                filteredArr = dancers.filter((dancer) => selectDancer === dancer.dancer);
+            }
+
+            let mapDancers = [...new Set(dancers.map((dancer) => dancer.dancer))];
+            mapDancers.forEach((dancer) => {
+                dancerArray.push({dancer: dancer})
+            })
+        }
+
     	console.log(this.state)
     	const appendResults = () => {
     		if(this.state.schedule){
@@ -127,22 +196,62 @@ class Home extends Component {
 	    		<nav className="navbar">
 					<img id="nycda"src={'./images/nycda_logo.png'}className="img-responsive"/>
 				</nav>
-	    		<div id="studio-check">
-		    		<input 
-		    			id="check"
-		    			type="checkbox"
-		    			onChange={() => this.filterUserStudio(this.state.user.studio)}
-		    		/>See only my studio   
-		    	</div>	
-		    	<div id="dancer-check">
-		    		<input 
-		    			id="check"
-		    			type="checkbox"
-		    			onChange={() => this.filterUserDancers(this.state.schedule)} 
-		    		/>Filter by favorite dancers    
+				<div id="check-words">
+		    		<div id="studio-check">
+			    		<input 
+			    			id="check"
+			    			type="checkbox"
+			    			onChange={() => this.filterUserStudio(this.state.user.studio)}
+			    		/>See only my studio   
+			    	</div>	
+			    	<div id="dancer-check">
+			    		<input 
+			    			id="check"
+			    			type="checkbox"
+			    			onChange={() => this.filterUserDancers(this.state.schedule)} 
+			    		/>Filter by favorite dancers    
+			    	</div>
+			    </div>	
+		    	<div id="more-dancers">
+		    		<p id="add">Add more dancers to favorites</p>
+		    		<form id="add-dancer-form" onSubmit={this.updateDancersForm.bind(this)}>
+			    		<br></br>	
+			    		<Autocomplete
+			    			getItemValue={(item) => item.dancer}
+		                    items={dancerArray} 
+		                    id="dancerdrop"
+		                   	menuStyle={
+	                    		{
+	                    			position: 'absolute',
+	                    			top: '80px'
+	                    		}
+	                    	}
+		                    renderItem={(item, isHighlighted) => 
+		                        this.state.value ? 
+		                            <div className="form-control" >
+		                               <input 
+		                                	type="checkbox" 
+		                                	onChange={() => this.allSelectedChange(item.dancer)}
+		                                	checked={this.state.allSelected.indexOf(item.dancer) > -1}
+		                                />
+		                             {item.dancer}
+		                            </div> : <div></div>
+		                    }
+		                    shouldItemRender={(item, value) => item.dancer.toLowerCase().indexOf(value) > -1}
+		                    value={this.state.value}
+		                    onChange={
+		                        (e) => {
+		                            this.setState({ value: e.target.value })
+		                        }
+		                    }
+		                    onSelect={this.selectDancerChange.bind(this)}
+		                />
+		                
+	                	<input id="more-dancer-button"className="btn btn-default" type="submit" value="Submit"/>
+	                </form>		
 		    	</div>
 	    		<table id="table-schedule"className = "table table-bordered">
-	    			<thead id="table-head" className="thead">
+	    			<thead id="table-head" className="thead" >
 		    			<tr>
 		    				<th id="num">#</th>
 		    				<th id="song">Song</th>

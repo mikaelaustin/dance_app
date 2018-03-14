@@ -1,12 +1,18 @@
 #login-header{
-	font:black !important;
-	outline: white !important;
-	border-color: white !important;
-	text-shadow: white;
-	font-size: : 22px !important;
+	color:#42267f !important;
+	outline: black !important;
+  border:black;
+	border-color: black !important;
+	text-shadow: 1px black;
+	font-size: : 30px !important;
 	margin-bottom:20px;
 	padding-bottom: 10px;
+  font-weight: bold;
+  margin-left:190px;
 
+}
+.menuStyle{
+  background-color:red;
 }
 #form-div{
 	margin:auto;
@@ -19,7 +25,7 @@ h2{
 	-webkit-text-stroke: .5px white;
 	font:black;
 	font-size: 35px;
-	margin-left: 190px;
+
 	z-index: 1;
 	position: relative;
 }
@@ -42,12 +48,17 @@ h2{
 }
 #reg-name, #reg-email, #reg-phone, #reg-un, #reg-pword{
 	margin-left:100px;
+  margin-top:-5px;
+  margin-bottom:-3px;
 }
 #register-head{
-	margin-left:0px;
+  font-size:40px;
+  font-weight:bold;
+  margin-right:45px;
 }
 body{
 	background-color: #ff4dd2;
+  font-family:"work sans";
 }
 a{
 	color:white;
@@ -56,7 +67,7 @@ a{
 #select-font{
 	font-size:18px;
 	color:black;
-	margin-top:3px;
+	margin-top:-8px;
 	margin-bottom:-15px;
 }
 
@@ -111,6 +122,9 @@ tbody tr:nth-child(2n+1) td{
 tbody tr:nth-child(2n) td{
 	background-color: #ff4dd2;
 }
+.btn:hover{
+  outline:#f99de7 1px;
+}
 
 #table-head{
 	text-align:center;
@@ -126,6 +140,7 @@ tbody tr:nth-child(2n) td{
 #num{
 	text-align:center;
 	width:70px;
+  font-weight: bold !important;
 }
 #danc{
 	text-align:center;
@@ -142,6 +157,11 @@ tbody tr:nth-child(2n) td{
 	float:left;
 
 }
+#add-dancer-form{
+  width:80%;
+  position: relative;
+}
+
 input[type=checkbox]{
 	padding-right:5px;
 	width:25px;
@@ -150,11 +170,88 @@ input[type=checkbox]{
 input[type=checkbox]:checked{
 	background-color:#ff4dd2;
 	color:#ff4dd2;
+
+}
+#add{
+	margin-right:285px;
+  float:right;
+  margin-top:20px;
+  color: white !important;
+  font-size: 15px;
+  margin-bottom:5px;
+}
+#check-words{
+  margin-left:160px;
+}
+.thead{
+  font-weight:700;
+}
+#more-dancer-button{
+    position: absolute;
+    right: -80px;
+    top: 50px;
+    background-color: #ff4dd2;
+    border-color: white;
+    color: white;
+}
+
+/*ul[role="combobox"] {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 3em;
+  list-style: none;
+  background-color: #eee;
+  display: none;
+  border: 2px #333 solid;
+  height: 12em;
+  width: 10em;
+  overflow: scroll;
+}*/
+
+.my_ra {
+  width: 200px;
+}
+#home_ra{
+    position: absolute;
+    margin-bottom: 0px;
+    right: 0px;
+    top: 54px;
+    width: 180px;
+
+}
+#signup_ra{
+  border-color: black;
+
+}
+/*Autocomplete input[role=combobox]#dancer-input{
+    
+    width:200px !important;
+    
+}*/
+#reg-button{
+  margin: 10px 
+}
+input[aria-expanded="true"]{
+  width:200px;
+
+}
+input[aria-autocomplete="list"]{
+  width:200px;
+
+}
+
+button, input, select, textarea{
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: auto;
+    color: black;
 }
 #exit-button{
-	margin-left:600px;
+	margin-left:650px;
 	background-color:#ff4dd2;
-	font:black;
+	color:white;
 	border-color: white;
 	margin-bottom:30px;
 	margin-top:30px;
@@ -173,7 +270,159 @@ nav{
 	margin-left:560px;
 	text-align:center;
 }
-.crossfade > figure {
+html, body {
+    height: 100%;
+    margin: 0;
+}
+#table-schedule{
+
+}
+
+.panel {
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+    color: white;
+    height: 100%;
+    min-width: 100%;
+    text-align: center;
+    display: table;
+    margin: 0;
+    background: #1c1c1c;
+    padding: 0 0;
+}
+
+.panel .inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#imgchange > .backgroundimg {
+	backface-visibility:hidden;
+	background-size:cover;
+	background-position: center center;
+	color:transparent;
+	height:100%;
+	left:0px;
+	opacity:0px;
+	position:absolute;
+	top:150px;
+	width:100%;
+	z-index:0;
+}
+
+#image1 {
+    background: url("./../images/group5.jpg") no-repeat center;
+
+}
+
+#image2 {
+    background: url("./../images/dancer7.jpg") no-repeat center;
+}
+
+#image3 {
+    background: url("./../images/group1.jpg") no-repeat center;
+}
+
+#image4 {
+    background: url("./../images/dancer6.jpg") no-repeat center;
+}
+
+#image5 {
+    background: url("./../images/group2.jpg") no-repeat center;
+}
+
+#image6 {
+    background: url("./../images/dancer4.jpg") no-repeat center;
+}
+#image7 {
+    background: url("./../images/dancer5.jpg") no-repeat center;
+}
+#image8 {
+    background: url("./../images/group3.jpg") no-repeat center;
+}
+
+@keyframes backgroundchangeFadeInOut {
+  0% {
+    opacity:1;
+  }
+  17% {
+    opacity:1;
+  }
+  25% {
+    opacity:0;
+  }
+  92% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes backgroundchangeFadeInOut {
+  0% {
+    opacity:1;
+  }
+  17% {
+    opacity:1;
+  }
+  25% {
+    opacity:0;
+  }
+  92% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+#imgchange div:nth-of-type(1) {
+  animation-delay: 35s;
+  -webkit-animation-delay: 35s;
+}
+#imgchange div:nth-of-type(2) {
+  animation-delay: 30s;
+  -webkit-animation-delay: 30s;
+}
+#imgchange div:nth-of-type(3) {
+  animation-delay: 25s;
+  -webkit-animation-delay: 25s;
+}
+#imgchange div:nth-of-type(4) {
+  animation-delay: 20s;
+  -webkit-animation-delay: 20s;
+}
+
+#imgchange div:nth-of-type(5) {
+  animation-delay: 15s;
+  -webkit-animation-delay: 15s;
+}
+#imgchange div:nth-of-type(6) {
+  animation-delay: 10s;
+  -webkit-animation-delay: 10s;
+}
+#imgchange div:nth-of-type(7) {
+  animation-delay: 5s;
+  -webkit-animation-delay: 5s;
+}
+#imgchange div:nth-of-type(8) {
+  animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+}
+
+#imgchange div {
+	animation-name: backgroundchangeFadeInOut;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-duration: 40;
+
+	-webkit-animation-name: backgroundchangeFadeInOut;
+	-webkit-animation-timing-function: ease-in-out;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-duration: 40s;
+
+}
+/*.crossfade > figure {
 	animation: imageAnimation 50s linear infinite 0s;
 	backface-visibility:hidden;
 	background-size:cover;
@@ -186,6 +435,7 @@ nav{
 	top:150px;
 	width:100%;
 	z-index:0;
+
 }
 .crossfade > figure:nth-child(1) {
 	animation-delay: 0s;
@@ -234,15 +484,8 @@ imageAnimation {
     17% { opacity: .8 }
     25% { opacity: 0 }
     100% { opacity: 0 }
-}
-@-webkit-keyframes 
-imageAnimation { 
-    0% { opacity: 0; animation-timing-function: ease-in; }
-    8% { opacity: .8; animation-timing-function: ease-out; }
-    17% { opacity: .8 }
-    25% { opacity: 0 }
-    100% { opacity: 0 }
-}
+}*/
+
 
 
 
@@ -256,15 +499,13 @@ imageAnimation {
    animation-duration: 50s;
    top:150px;
    left:0px;
-   position: absolute;
    height:100%;
-   width:100%;
 }
 
 @-webkit-keyframes fade {
    0% {opacity: 0;}
-   20% {opacity: .9;}
-   33% {opacity: .8;}
+   20% {opacity: .8;}
+   33% {opacity: 1;}
    53% {opacity: 0;}
    100% {opacity: 0;}
 }
@@ -272,7 +513,7 @@ imageAnimation {
 @keyframes fade {
    0% {opacity: 0;}
    20% {opacity: .8;}
-   33% {opacity: .8;}
+   33% {opacity: 1;}
    53% {opacity: 0;}
    100% {opacity: 0;}
 }
@@ -289,7 +530,7 @@ imageAnimation {
    -webkit-animation-delay: -5s;
    height: auto;
    width: 100%;
-   background-position: 100px 100px;
+   background-position: center -20px;
    background-repeat: no-repeat;
    background-size: cover;
    margin: 0%;
@@ -335,7 +576,7 @@ imageAnimation {
    -webkit-animation-delay: -30s;
    height: auto;
    width: 100%;
-   background-position: center;
+   background-position: center 0px;
    background-repeat: no-repeat;
    background-size: cover;
    margin: 0%;
@@ -353,7 +594,7 @@ imageAnimation {
    -webkit-animation-delay: -40s;
    height: auto;
    width: 100%;
-   background-position: 100px 100px;
+   background-position: center 0px;
    background-repeat: no-repeat;
    background-size: cover;
    margin: 0%;
