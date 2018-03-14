@@ -223,7 +223,8 @@ class Home extends Component {
 		                   	menuStyle={
 	                    		{
 	                    			position: 'absolute',
-	                    			top: '80px'
+	                    			top: '80px',
+                            width: '275px'
 	                    		}
 	                    	}
 		                    renderItem={(item, isHighlighted) => 
