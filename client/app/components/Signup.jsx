@@ -130,7 +130,7 @@ class Signup extends Component {
 	    		<form id="register-form" onSubmit={this.submitSignUpForm.bind(this)}>
 		    			<input id="reg-name"className="form-control" type="name" ref="name" placeholder= "Enter first & last name"/><br></br>
 		    			<input id="reg-email"className="form-control" type="email" ref="email" placeholder= "Email"/><br></br>
-		    			<input id="reg-phone"className="form-control bfh-phone" type="phone" ref="phone" data-validation="number"data-format="(ddd)ddd-dddd"placeholder= "Phone #"/><br></br>
+		    			<input id="reg-phone"className="form-control bfh-phone" type="phone" ref="phone" data-validation="number"data-format="(ddd)ddd-dddd"placeholder= "Phone # (only #s)"/><br></br>
 		    			<input id="reg-un"className="form-control" type="text" ref="username" placeholder= "Create Username"/><br></br>
 		    			<input id="reg-pword"className="form-control" type="password" ref="password" placeholder= "Create Password"/><br></br>
 		    			<p id="select-font">Location of competition</p>
