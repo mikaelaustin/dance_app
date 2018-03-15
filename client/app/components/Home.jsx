@@ -21,9 +21,7 @@ class Home extends Component {
     }
     updateDancersForm(e){
    		e.preventDefault();
-
    		var dancers = this.state.user.dancers.concat(this.state.allSelected);
-
 //the below should be updating dancer array in users
 //put route
    		fetch('/api/update-dancer-favorites', {
@@ -35,7 +33,6 @@ class Home extends Component {
             },
             credentials: 'same-origin'
    		}).then((response) => response.json()).then((results) => {
-   			console.log(results)
    			// let signUpSuccess = results ? "Yes" : "No"
    			// this.setState({
    			// 	signedUp: signUpSuccess
@@ -248,8 +245,8 @@ class Home extends Component {
 		                    onSelect={this.selectDancerChange.bind(this)}
 		                />
 		                
-	                	<input id="more-dancer-button"className="btn btn-default" type="submit" value="Submit"/>
-	                </form>		
+	           <input id="more-dancer-button"className="btn btn-default" type="submit" value="Submit"/>
+	         </form>		
 		    	</div>
 	    		<table id="table-schedule"className = "table table-bordered">
 	    			<thead id="table-head" className="thead" >

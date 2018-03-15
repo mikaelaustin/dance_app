@@ -77,7 +77,6 @@ router.post('/api/login', function(req,res,next){
 });
 
 router.get('/api/logged-in', (req,res) => {
-	console.log(req)
 	if(req.user){
 		res.json({message: 'logged-in', user: req.user});
 	} else {
@@ -113,6 +112,7 @@ router.put('/api/update-dancer-favorites', (req,res) => {
 		}
 	).then((post) => {
 		res.json(post)
+		console.log("adding dancers")
 	});
 });
 
